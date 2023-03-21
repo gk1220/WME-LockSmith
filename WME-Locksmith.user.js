@@ -1,10 +1,14 @@
 // ==UserScript==
 // @name         WME Locksmith
 // @namespace    https://greasyfork.org/en/users/286957-skidooguy
-// @version      2021.08.10.01
+// @version      2023.03.16.00
 // @description  Dynamic locking tool which locks based on State standards
 // @author       SkiDooGuy / JustinS83 / Blaine "herrchin" Kahle
-// @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor\/?.*$/
+// @match        https://www.waze.com/editor*
+// @match        https://www.waze.com/*/editor*
+// @match        https://beta.waze.com/editor*
+// @match        https://beta.waze.com/*/editor*
+// @exclude      https://www.waze.com/user/editor*
 // @require      https://greasyfork.org/scripts/24851-wazewrap/code/WazeWrap.js
 // @require      https://apis.google.com/js/api.js
 // @grant        none
@@ -606,7 +610,7 @@ function initLocksmith() {
     roadClear = cakeFlavor >= FEATURELOCK;
 
     // Script is initialized and the highlighting layer is created
-    new WazeWrap.Interface.Tab('LS', $section.html(), initializeSettings);
+    WazeWrap.Interface.Tab('LS', $section.html(), initializeSettings, 'LS');
 
     WazeWrap.Interface.ShowScriptUpdate(GM_info.script.name, GM_info.script.version, LS_UPDATE_NOTES, 'https://greasyfork.org/en/scripts/386773-wme-locksmith', 'https://www.waze.com/forum/viewtopic.php?f=819&t=285583');
 
